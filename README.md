@@ -68,27 +68,26 @@ function [B,p_val] = Tdepent_FCM_ins(Data,causal_ordering)
 function [A, G, B, p_val] = Tdepent_FCM_delayIns(Data, causal_ordering,p);
 
 * model type:
- *  linear model (equation 2 in the paper), and consider time-delayed and instantaneous causal effects simultaneously. We estimate them in one step.
-
-* In this code we assume all time-dependent coefficients share the same kernel hypermeters
+  *  linear model (equation 2 in the paper), and consider time-delayed and instantaneous causal effects simultaneously. We estimate them in one step.
+  * In this code we assume all time-dependent coefficients share the same kernel hypermeters
 
 * INPUT:
- *  Data : TxN matrix of samples(T: number of samples; N: number of variables)
- *  p: time lag
- *  causal_ordering:  the instantaneous causal ordering, a 1xN vector. 
-    *       The root node is labelled as 1, and the sink node is labelled as N
-    *       for example: if x1->x2->x3, and Data = [x1,x2,x3], then causal ordering = [1,2,3];
-    *                   if x3->x2->x1, and Data = [x1,x2,x3], then causal ordering = [3,2,1];
+  *  Data : TxN matrix of samples(T: number of samples; N: number of variables)
+  *  p: time lag
+  *  causal_ordering:  the instantaneous causal ordering, a 1xN vector. 
+     *       The root node is labelled as 1, and the sink node is labelled as N
+     *       for example: if x1->x2->x3, and Data = [x1,x2,x3], then causal ordering = [1,2,3];
+     *                   if x3->x2->x1, and Data = [x1,x2,x3], then causal ordering = [3,2,1];
 
 
 * OUTPUT:
- *   A: the estimated posterior mean of time-delayed causal coefficients
-   *     A{i}(j,k,:): the ith time-lagged causal coefficients from Xk to Xj(Xk ->Xj)
- *   G: the estimated posterior mean of confounder term
-   *     G(i,:): the confounder term for Xi
- *   B: the estimated posterior mean of the instantaneous causal coefficients
-   *      B(i,j,:): means the causal coefficicents from Xj to Xi (Xj -> Xi)
- *  p_val: p values derived from the independence test between estimated noise term and hypothetical causes
+   *   A: the estimated posterior mean of time-delayed causal coefficients
+       *     A{i}(j,k,:): the ith time-lagged causal coefficients from Xk to Xj(Xk ->Xj)
+   *   G: the estimated posterior mean of confounder term
+       *     G(i,:): the confounder term for Xi
+   *   B: the estimated posterior mean of the instantaneous causal coefficients
+       *      B(i,j,:): means the causal coefficicents from Xj to Xi (Xj -> Xi)
+   *  p_val: p values derived from the independence test between estimated noise term and hypothetical causes
 
 
 ### EXAMPLE:
