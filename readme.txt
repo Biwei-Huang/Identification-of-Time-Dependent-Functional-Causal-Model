@@ -64,7 +64,7 @@ Recovering the instantaneous varying causal coefficients:
 
 Recovering both time-delayed and instantaneous varying causal coefficients, as well as cofounder terms:
 
->> function [A G p_val] = Tdepent_FCM_delayed(Data, p)
+>> function [A, G, B, p_val] = Tdepent_FCM_delayIns(Data, causal_ordering,p);
 
 * model type:
  *  linear model (equation 2 in the paper), and consider time-delayed and instantaneous causal effects simultaneously. We estimate them in one step.
